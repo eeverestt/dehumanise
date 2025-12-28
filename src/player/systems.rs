@@ -1,5 +1,5 @@
-use crate::camera::components::CameraEular;
-use crate::player::components::Player;
+use crate::camera::components::*;
+use crate::player::components::*;
 use crate::settings::resources::Keymap;
 use bevy::prelude::*;
 
@@ -18,4 +18,21 @@ pub fn apply_player_velocity(
         }
         player_transform.translation += yaw * dir * time.delta_secs();
     }
+}
+
+fn spawn_player(
+    mut commands: Commands,
+    asset_server: Res<AssetServer>,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+) {
+    commands.spawn((
+        MeshMaterial3d(materials.add(asset_server.load("test texture 16x.png"))),
+        Mesh3d(meshes.add(Capsule3d::new(1., 1.))),
+        Transform::from_xyz(0., 0., -4.),
+        children![(
+            CameraArm,
+            children![(Camera3d::default(), CameraEular::default())]
+        )],
+    ));
 }
