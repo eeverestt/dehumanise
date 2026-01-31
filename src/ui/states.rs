@@ -2,11 +2,13 @@ enum State {
     Game,
     SettingsMenu(SettingsState),
     MainMenu,
+    CreditsMenu,
 }
 
 enum SettingsState {
     General,
     Controls,
-    Graphics,
+    Video,
     Audio,
+    Saves,
 }

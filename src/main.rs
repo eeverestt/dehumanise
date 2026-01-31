@@ -31,6 +31,7 @@ pub mod ui {
 pub mod camera {
     pub mod components;
     pub mod plugin;
+    pub mod resources;
     pub mod systems;
 }
 
@@ -38,7 +39,6 @@ fn main() {
     App::new()
         .add_plugins((
             DefaultPlugins,
-            DebugPlugin,
             PlayerPlugin,
             SettingsPlugin,
             UiPlugin,
